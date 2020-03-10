@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+    "name": "Badgr Extras",
+    "description": "Additional functionality for consumers of Badgr-based open badges.",
+    "version": "0.0.0.1",
+    "browser_action": {
+        "default_icon": "icon16.png"
+    },
+    "background": {
+        "scripts": ["jquery-3.4.1.min.js", "background.js"],
+        "persistent": false
+    },
+    "icons" : {
+        "48" : "icon48.png",
+        "128" : "icon128.png"
+    },
+    "permissions":  ["https://badgr.com/*"]
+  }
