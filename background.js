@@ -1,15 +1,12 @@
-$(document).ready(function(){
-    chrome.tabs.onUpdated.addListener(
-        function(tabId, changeInfo, tab) {
-            var string = tab.url;
-            if(string){
-                var match = string.match(/(https:\/\/badgr\.com\/public\/badges\/)((?:[a-z][a-z0-9_]*))/i);
-                if (changeInfo.status == 'complete') {
-                    if(match && match.length){
-                        chrome.tabs.executeScript(tab.id, {file: "script.js"});
-                    }
-                }
-            }
-        }
-    );
-});
+chrome.tabs.onUpdated.addListener(
+    function(tabId, changeInfo, tab) {
+      // read changeInfo data and do something with it
+      // like send the new url to contentscripts.js
+      if (changeInfo.status == 'complete') {
+        chrome.tabs.sendMessage( tabId, {
+          message: 'add_claim',
+          url: changeInfo.url
+        })
+      }
+    }
+);
